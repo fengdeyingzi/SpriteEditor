@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/ic_animation" />
+
+        <LinearLayout
+            android:layout_marginLeft="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_weight="0.2"
+                android:id="@+id/text_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="精灵文件名"
+                android:textSize="@dimen/font_h1" />
+
+            <TextView
+                android:layout_weight="1.0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="作者" />
+
+            <TextView
+                android:id="@+id/text_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="5.0"
+                android:gravity="center|left"
+                android:text="精灵说明" />
+
+            <RelativeLayout
+                android:layout_weight="1.0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="创建日期" />
+
+                <TextView
+                    android:layout_marginRight="32dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="大小" />
+            </RelativeLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <ImageView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>
