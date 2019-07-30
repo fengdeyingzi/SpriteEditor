@@ -1,2 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.github.dfqin.grantor" />
+    package="com.github.dfqin.grantor" >
+    <application>
+        <activity android:name="com.github.dfqin.grantor.PermissionActivity" />
+
+    </application>
+</manifest>

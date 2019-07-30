@@ -5,17 +5,14 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 
 /**
- * 显示logo
- * 加载联网
+ * 切片编辑界面
  */
-public class LogoActivity extends BaseActivity {
+
+public class AliceEditActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        gotoActivity(SpriteListActivity.class);
+        setContentView(R.layout.activity_aliceedit);
     }
-
-
-
 }
