@@ -16,6 +16,9 @@ import androidx.annotation.Nullable;
 
 import com.xl.game.tool.XL;
 
+/**
+ * 一个测试绘图的控件
+ */
 public class TestView extends View {
     Bitmap bitmap;
     int origin_x=0,origin_y=0;

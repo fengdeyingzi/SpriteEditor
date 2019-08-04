@@ -13,7 +13,7 @@ public class LogoActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        gotoActivity(SpriteListActivity.class);
+        gotoActivity(SliceEditActivity.class);
     }
 
 

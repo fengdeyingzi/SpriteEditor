@@ -26,6 +26,7 @@
         </activity>
         <activity android:name=".SpriteListActivity" />
         <activity android:name=".AliceEditActivity" />
+        <activity android:name=".SliceEditActivity" />
     </application>
 
 </manifest>
