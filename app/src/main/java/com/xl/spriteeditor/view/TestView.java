@@ -9,6 +9,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -68,15 +69,16 @@ public class TestView extends View {
      * @param alpha     不透明度
      * @param color     颜色
      */
-    public static void drawBitmap(Canvas canvas,Bitmap bitmap, float origin_x, float origin_y, float x, float y, float zoom,int flag, float rotate, int alpha, int color){
+    public void drawBitmap(Canvas canvas,Bitmap bitmap, float origin_x, float origin_y, float x, float y,
+                           float zoom_h,float zoom_v,float rotate, int color){
         Matrix matrix = new Matrix();
         Paint paint = new Paint();
-        if (flag == 1) //左右翻转
-            matrix.setScale(-1, 1,origin_x,origin_y);
-        if (flag == 2)  //上下翻转
-            matrix.setScale(1, -1,origin_x,origin_y);
+//        if (flag == 1) //左右翻转
+//            matrix.setScale(-1, 1,origin_x,origin_y);
+//        if (flag == 2)  //上下翻转
+//            matrix.setScale(1, -1,origin_x,origin_y);
         // 缩放
-        matrix.postScale(zoom, zoom,origin_x,origin_y);
+        matrix.postScale(zoom_h, zoom_v,origin_x,origin_y);
         // 旋转
         matrix.postRotate(rotate,origin_x,origin_y);
 
@@ -110,10 +112,68 @@ public class TestView extends View {
 //            原文：https://blog.csdn.net/harvic880925/article/details/51253944
 //            版权声明：本文为博主原创文章，转载请附上博文链接！
         }
-        else{
-            //设置透明度
-            paint.setAlpha(alpha);
+
+
+        canvas.drawBitmap(bitmap,matrix,paint);
+    }
+
+    /*
+bitmap 绘制的bitmap
+cx cy 绘制到屏幕的x y坐标
+cw ch 绘制到屏幕上的宽高
+tx ty 裁剪区域xy坐标
+tw th 图片裁剪区域宽高
+origin_x 旋转/缩放原点x
+origin_y 旋转/缩放原点y
+zoom_x 横向缩放值
+zoom_y 纵向缩放值
+rotate 旋转角度
+color 绘制颜色 为0表示正常绘制
+ */
+    void N2J_drawBitmapEx(Canvas canvas,Bitmap bitmap, int cx,int cy,int cw,int ch,int tx,int ty,int tw,int th,float origin_x,float origin_y, float zoom_h,float zoom_v,
+                          float rotate, int color){
+        Matrix matrix = new Matrix();
+        Paint paint = new Paint();
+//		if (flag == 1) //左右翻转
+//			matrix.setScale(-1, 1,origin_x,origin_y);
+//		if (flag == 2)  //上下翻转
+//			matrix.setScale(1, -1,origin_x,origin_y);
+        RectF src = new RectF(tx,ty,tx+tw,ty+th);
+        RectF dst = new RectF(cx,cy,cw,ch);
+//        matrix.mapRect(src);
+        // 缩放
+        matrix.postScale(zoom_h, zoom_v,origin_x,origin_y);
+        // 旋转
+        matrix.postRotate(rotate,origin_x,origin_y);
+
+        matrix.postTranslate(cx,cy);
+
+
+        //颜色渲染
+        /*
+        if(color!=0){
+            color = (alpha<<24)|(color&0xffffff);
+            paint.setColorFilter( new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN)) ;
+            paint.setColor(color);
         }
+        */
+        if(color!=0){
+            float r = ((float)((color>>16)&0xff))/255;
+            float g = ((float)((color>>8)&0xff))/255;
+            float b = ((float)((color)&0xff))/255;
+            float a = ((float)((color>>24)&0xff))/255;
+
+            // 生成色彩矩阵
+            ColorMatrix colorMatrix = new ColorMatrix(new float[]{
+                    r,0,0,0,0,
+                    0,g,0,0,0,
+                    0,0,b,0,0,
+                    0,0,0,a,0
+            });
+            paint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+
+        }
+
 
         canvas.drawBitmap(bitmap,matrix,paint);
     }
@@ -130,8 +190,9 @@ public class TestView extends View {
         super.onDraw(canvas);
 
 
-canvas.drawBitmap(bitmap,0,0,null);
-        drawBitmap(canvas, bitmap,origin_x,origin_y,x,y,zoom,1,rotate,alpha,color);
+//canvas.drawBitmap(bitmap,0,0,null);
+        drawBitmap(canvas, bitmap,origin_x,origin_y,x,y,zoom,zoom,rotate,color);
+        N2J_drawBitmapEx(canvas,bitmap,300,30,300,300,0,0,50,50,origin_x,origin_y,zoom,zoom,rotate,color);
         drawLines(canvas,x,y);
     }
 }
