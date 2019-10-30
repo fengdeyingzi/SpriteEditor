@@ -243,6 +243,10 @@ start_zoom = this.zoom;
 int line = (int) Coll.getLineSize(x1,y1,x2,y2);
                     Log.i(TAG, "onTouchEvent: line="+line+" start_zoom="+start_zoom+" zoom="+(((float)line/2)/(start_line/2)));
                     float zoom_new = (start_zoom-1.0f)+(((float)line)/(start_line));
+
+                    zoom_new = (start_zoom)*(((float)line)/(start_line));
+
+
                     zoomView(center_x,center_y, zoom_new);
                 }
 
