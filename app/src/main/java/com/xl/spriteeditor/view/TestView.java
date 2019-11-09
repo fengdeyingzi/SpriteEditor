@@ -9,6 +9,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
@@ -25,7 +26,7 @@ public class TestView extends View {
     int origin_x=0,origin_y=0;
     int x=100,y=100;
     float zoom=3.0f;
-    int rotate=30;
+    int rotate=0;
     int alpha=190;
     int color=0x90f090;
 
@@ -55,6 +56,11 @@ public class TestView extends View {
         invalidate();
     }
 
+    public void setRotate(int rotate){
+        this.rotate = rotate;
+        invalidate();
+    }
+
 
     /**
      * 实现图片的旋转 缩放 翻转 设置透明度绘制
@@ -63,13 +69,12 @@ public class TestView extends View {
      * @param origin_y  旋转 缩放原点 y
      * @param x          绘制x坐标
      * @param y          绘制y坐标
-     * @param zoom      缩放比例
-     * @param flag      翻转状态 1左右翻转 2上下翻转
+     * @param zoom_v      纵向缩放比例
+     * @param zoom_h      横向缩放比例
      * @param rotate    旋转角度
-     * @param alpha     不透明度
      * @param color     颜色
      */
-    public void drawBitmap(Canvas canvas,Bitmap bitmap, float origin_x, float origin_y, float x, float y,
+    public void drawBitmapMax(Canvas canvas,Bitmap bitmap, float origin_x, float origin_y, float x, float y,
                            float zoom_h,float zoom_v,float rotate, int color){
         Matrix matrix = new Matrix();
         Paint paint = new Paint();
@@ -77,6 +82,8 @@ public class TestView extends View {
 //            matrix.setScale(-1, 1,origin_x,origin_y);
 //        if (flag == 2)  //上下翻转
 //            matrix.setScale(1, -1,origin_x,origin_y);
+//        RectF src = new RectF(tx,ty,tx+tw,ty+th);
+//        matrix.mapRect(new RectF(50,0,80,30),new RectF(0,0,30,20));
         // 缩放
         matrix.postScale(zoom_h, zoom_v,origin_x,origin_y);
         // 旋转
@@ -106,11 +113,6 @@ public class TestView extends View {
             });
             paint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
 
-//            ---------------------
-//                    作者：启舰
-//            来源：CSDN
-//            原文：https://blog.csdn.net/harvic880925/article/details/51253944
-//            版权声明：本文为博主原创文章，转载请附上博文链接！
         }
 
 
@@ -191,8 +193,8 @@ color 绘制颜色 为0表示正常绘制
 
 
 //canvas.drawBitmap(bitmap,0,0,null);
-        drawBitmap(canvas, bitmap,origin_x,origin_y,x,y,zoom,zoom,rotate,color);
-        N2J_drawBitmapEx(canvas,bitmap,300,30,300,300,0,0,50,50,origin_x,origin_y,zoom,zoom,rotate,color);
+        drawBitmapMax(canvas, bitmap,origin_x,origin_y,x,y,zoom,zoom,rotate,color);
+//        N2J_drawBitmapEx(canvas,bitmap,300,30,300,300,0,0,50,50,origin_x,origin_y,zoom,zoom,rotate,color);
         drawLines(canvas,x,y);
     }
 }

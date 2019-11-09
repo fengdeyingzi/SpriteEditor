@@ -19,6 +19,7 @@ public class SpriteListActivity extends BaseActivity {
     private TestView textview;
     private SeekBar seek_origin_x;
     private SeekBar seek_origin_y;
+    private SeekBar seek_rotate;
     private SeekBar seek_zoom;
 
     @Override
@@ -79,6 +80,23 @@ seek_zoom.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
     }
 });
 
+        seek_rotate.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                textview.setRotate(progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
     }
 
     public void requestPermission() {
@@ -116,5 +134,6 @@ seek_zoom.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
         seek_origin_x = (SeekBar) findViewById(R.id.seek_origin_x);
         seek_origin_y = (SeekBar) findViewById(R.id.seek_origin_y);
         seek_zoom = findViewById(R.id.seek_zoom);
+        seek_rotate = findViewById(R.id.seek_rotate);
     }
 }
