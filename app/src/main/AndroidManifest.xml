@@ -29,6 +29,8 @@
         <activity android:name=".SliceEditActivity" />
         <activity android:name=".MenuActivity" />
         <activity android:name=".SingleToSpriteActivity" />
+        <activity android:name=".DirToSpriteActivity" />
+        <activity android:name=".MultipleImgToSpriteActivity" />
     </application>
 
 </manifest>

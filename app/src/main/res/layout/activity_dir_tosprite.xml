@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <com.xl.view.FileListView
-
+    <com.xl.view.FileSelectView
+        android:id="@+id/fileselectview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
@@ -15,15 +15,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
+            android:id="@+id/text_info"
             android:text="当前图片信息："
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <EditText
+            android:id="@+id/edit_width"
             android:hint="输入精灵宽度"
             android:inputType="number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <EditText
+            android:id="@+id/edit_height"
             android:hint="输入精灵高度"
             android:inputType="number"
             android:layout_width="match_parent"
@@ -32,9 +35,22 @@
             android:layout_width="8dp"
             android:layout_height="8dp"/>
         <Button
+            android:id="@+id/btn_tosprite"
             android:text="生成精灵"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/text_toinfo"
+                android:textIsSelectable="true"
+                android:text="生成带多个动作的精灵\n选择一个文件夹，这个文件夹内包含多个子文件夹，文件夹名字按照action_001,action_002的方式命名，这些文件夹内包含多个图片，图片的名字按照xx_001.png,xx_002.png的方式命名，将这个文件夹生成一个精灵文件，包含精灵的png文件及sprite文件。"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </ScrollView>
+
 
     </LinearLayout>
 

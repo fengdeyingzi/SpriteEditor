@@ -85,8 +85,10 @@ public class MenuActivity extends BaseActivity implements View.OnClickListener {
                 gotoActivity(SingleToSpriteActivity.class);
                 break;
             case R.id.btn_multiple_img:
+                gotoActivity(MultipleImgToSpriteActivity.class);
                 break;
             case R.id.btn_dir_img:
+                gotoActivity(DirToSpriteActivity.class);
                 break;
         }
     }

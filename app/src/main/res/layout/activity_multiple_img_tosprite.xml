@@ -9,7 +9,8 @@
         android:paddingRight="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <com.xl.view.FileListView
+        <com.xl.view.FileSelectView
+            android:id="@+id/fileselectview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
@@ -18,11 +19,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <EditText
+            android:id="@+id/edit_width"
             android:hint="输入精灵宽度"
             android:inputType="number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <EditText
+            android:id="@+id/edit_height"
             android:hint="输入精灵高度"
             android:inputType="number"
             android:layout_width="match_parent"
@@ -31,17 +34,27 @@
             android:layout_width="8dp"
             android:layout_height="8dp"/>
         <Button
+            android:id="@+id/btn_tosprite"
             android:text="生成精灵"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <Button
+            android:id="@+id/btn_look"
             android:text="预览"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-        <TextView
-            android:text="生成后信息"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/text_toinfo"
+                android:textIsSelectable="true"
+                android:text="多个图片生成精灵\n选择一个文件夹，这个文件夹里的图片按照xx_001.png,xx_002.png的方式排列，获取这个文件夹内的图片，按照顺序生成精灵。"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </ScrollView>
+
 
     </LinearLayout>
 

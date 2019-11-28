@@ -1,1 +1,1 @@
-include ':app',':permission',':xlgame', ':filelistview'
+include ':app',':permission',':xlgame',':filelistview'

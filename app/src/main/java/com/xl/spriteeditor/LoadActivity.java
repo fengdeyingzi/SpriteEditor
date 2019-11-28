@@ -40,6 +40,7 @@ public class LoadActivity extends Activity {
     void start() {
         Intent intent = new Intent(this, MenuActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override

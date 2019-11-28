@@ -1,6 +1,9 @@
 package com.xl.game.tool;
 import android.os.*;
 import android.util.Base64;
+
+import com.xl.game.math.Str;
+
 import java.io.*;
 
 public class FileUtils
@@ -118,7 +121,7 @@ public class FileUtils
 				start = i+1;
 			}
 		}
-		for(int j=start;i<filepath.length();j++){
+		for(int j=start;j<filepath.length();j++){
 			char c = filepath.charAt(j);
 			if(c==':' || c=='?' || c=='&' || c=='*' || c=='\"' || c=='<' || c=='>'){
 				end=j;
@@ -127,6 +130,19 @@ public class FileUtils
 		}
 		
 		return filepath.substring(start,end);
+	}
+
+	//获取文件后缀
+	public static String getFileEndName(String path){
+
+		int endindex = Str.strrchr(path,'.');
+		String endName = null;
+		if(endindex>0) {
+			endName = path.substring(endindex);
+			endName = endName.toLowerCase();
+			return endName;
+		}
+		return "";
 	}
 		
 	

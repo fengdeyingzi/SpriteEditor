@@ -35,6 +35,10 @@
             android:text="文件夹生成精灵"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+        <TextView
+            android:text="目前只实现了单张图片生成精灵，多张图片生成精灵正在开发中"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
 </LinearLayout>
