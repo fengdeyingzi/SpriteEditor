@@ -741,6 +741,16 @@ public class Str
 	return list;
 	}
 
+	//不区分大小写比较进行strstr
+	public static int strstrx(String text, String str){
+  		if(text!=null || str!=null){
+  			return text.toLowerCase().indexOf(str.toLowerCase());
+		}
+  		return -1;
+	}
+
+
+
 	//测试字符串是否以指定后缀结束
 	/*
 	public static int strhz(char text[],char hz[])

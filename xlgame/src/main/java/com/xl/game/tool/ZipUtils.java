@@ -1,6 +1,8 @@
 package com.xl.game.tool;
 
 
+import android.util.Log;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -30,6 +32,7 @@ import java.util.zip.ZipOutputStream;
 
 public class ZipUtils
 {
+	private static final String TAG = "ZipUtils";
 	private static final int BUFF_SIZE = 1024*1024; // 1M Byte
 	/**
 	 * 批量压缩文件（夹）
@@ -121,22 +124,38 @@ public class ZipUtils
 				String str = folderPath+File.separator+entry.getName();
 				str=new String(str.getBytes("UTF-8"), "UTF-8");
 				File desFile = new File(str);
-				if(!desFile.exists())
-				{
-					File fileParentDir = desFile.getParentFile();
-					if(!fileParentDir.exists())
+				Log.i(TAG, "unZipFile: "+desFile);
+				if(entry.isDirectory()){
+					desFile.mkdirs();
+				}
+				else{
+					if(!desFile.exists())
 					{
-						fileParentDir.mkdirs();
+						File fileParentDir = desFile.getParentFile();
+						if(!fileParentDir.exists())
+						{
+							boolean isCreate = fileParentDir.mkdirs();
+							if(!isCreate){
+								Log.i(TAG, "unZipFile: 创建文件夹失败");
+							}
+
+						}
+
 					}
-					desFile.createNewFile();
+if(!desFile.exists()){
+	desFile.createNewFile();
+}
+					out=new FileOutputStream(desFile,false);
+					byte buffer[] = new byte[BUFF_SIZE];
+					int realLength;
+					while((realLength=in.read(buffer))>0)
+					{
+						out.write(buffer, 0, realLength);
+					}
 				}
-				out=new FileOutputStream(desFile);
-				byte buffer[] = new byte[BUFF_SIZE];
-				int realLength;
-				while((realLength=in.read(buffer))>0)
-				{
-					out.write(buffer, 0, realLength);
-				}
+
+
+
 			}
 		}
 		finally
@@ -241,6 +260,36 @@ public class ZipUtils
 		}
 		return entryNames;
 	}
+
+	//获取zip包中的首个文件夹
+	public static String getFirstDistory(File zipFile) throws IOException {
+//		ArrayList<String> entryNames = new ArrayList<String>();
+		Enumeration<?> entries = getEntriesEnumeration(zipFile);
+		while(entries.hasMoreElements())
+		{
+			ZipEntry entry = ((ZipEntry) entries.nextElement());
+			if(entry.isDirectory()){
+				String dirname = getEntryName(entry);
+				//第一级目录
+				if(dirname.indexOf(File.separatorChar)<=0 || dirname.indexOf(File.separatorChar)==dirname.length()-1){
+					return getEntryName(entry);
+				}
+				Log.i(TAG, "getFirstDistory: "+getEntryName(entry));
+			}
+			else{
+				String filename = getEntryName(entry);
+				Log.i(TAG, "getFirstDistory: 是文件 "+getEntryName(entry));
+				if(filename.indexOf(File.separatorChar)>0){
+					return filename.substring(0, filename.indexOf(File.separatorChar));
+				}
+
+			}
+//			entryNames.add(new String(getEntryName(entry).getBytes("UTF-8"), "UTF-8"));
+		}
+		return null;
+	}
+
+
 	/**
 	 * 获得压缩文件内压缩文件对象以取得其属性
 	 *
