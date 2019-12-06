@@ -9,6 +9,7 @@
 /.idea/codeStyles/project.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
+/release
 .DS_Store
 /build
 /captures

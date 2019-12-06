@@ -6,11 +6,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.xl.game.math.Str;
+import com.xl.game.tool.ImageUtil;
+import com.xl.spriteeditor.tool.SpriteFileBuilder;
 import com.xl.view.FileSelectView;
+
+import org.json.JSONException;
+
+import java.io.File;
 
 import androidx.annotation.Nullable;
 
-public class MultipleImgToSpriteActivity extends Activity implements View.OnClickListener {
+public class MultipleImgToSpriteActivity extends BaseActivity implements View.OnClickListener {
 
     /**
      * 输入精灵宽度
@@ -51,6 +59,7 @@ public class MultipleImgToSpriteActivity extends Activity implements View.OnClic
         btn_look.setOnClickListener(this);
         text_toinfo = (TextView) findViewById(R.id.text_toinfo);
         fileSelectView = (FileSelectView) findViewById(R.id.fileselectview);
+        fileSelectView.selectDir();
     }
 
     @Override
@@ -59,6 +68,25 @@ public class MultipleImgToSpriteActivity extends Activity implements View.OnClic
             default:
                 break;
             case R.id.btn_tosprite:
+//                singleDirToSprite
+                SpriteFileBuilder builder = new SpriteFileBuilder();
+                int sprite_width = Str.atoi(edit_width.getText().toString());
+                int sprite_height = Str.atoi(edit_height.getText().toString());
+                if(sprite_width>0 && sprite_height>0 ){
+                    try {
+                        builder.singleDirToSprite(fileSelectView.getPath(), sprite_width,sprite_height);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        text_toinfo.setText(e.toString());
+                    }
+                    String info = builder.toString();
+                    text_toinfo.setText(info);
+                    File dirPath = new File(fileSelectView.getPath());
+                    ImageUtil.saveBitmapToPNG(builder.getBitmap(),dirPath.getParentFile().getPath()+ File.separator+"sprite.png");
+                }
+                else {
+                    toast("请输入正确的精灵宽高");
+                }
                 break;
             case R.id.btn_look:
                 break;
