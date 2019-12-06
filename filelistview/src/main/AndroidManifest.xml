@@ -4,22 +4,7 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
-
-    <application
-        android:label="@string/app_name"
-		>
-        <activity
-            android:label="@string/app_name"
-            android:name=".FileSelectActivity" >
-            <intent-filter >
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-		<activity
-			android:name=".FileListActivity"></activity>
-    </application>
+	
 	<uses-permission android:name="android.permission.INTERNET" /><!-- 访问网络连接，可能产生GPRS流量 -->
 	<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /><!-- Wifi 改变状态 -->
 	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /><!-- WiFi 状态 -->
