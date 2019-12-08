@@ -108,7 +108,7 @@ public class DirToSpriteActivity extends BaseActivity implements View.OnClickLis
         buffer.append("  bitmap_width=\""+jsonObject.getInt("bitmap_width")+"\"\n");
         buffer.append("  bitmap_height=\""+jsonObject.getInt("bitmap_height")+"\"\n");
         buffer.append(">\n");
-        JSONArray array_action = jsonObject.getJSONArray("actions");
+        JSONArray array_action = jsonObject.getJSONArray("action");
         for(int i=0;i<array_action.length();i++){
             buffer.append("    <action\n");
             buffer.append("    name=\"action_"+i+"\"\n");

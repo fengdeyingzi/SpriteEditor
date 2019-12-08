@@ -91,7 +91,7 @@ public class SpriteFileBuilder {
         json_sprite.put("bitmap",sprite_name);
         json_sprite.put("width",sprite_width);
         json_sprite.put("height",sprite_height);
-        json_sprite.put("actions", array_actions);
+        json_sprite.put("action", array_actions);
         buffer.append(String.format("<sprite bitmap=\"%s\" width=\"%d\" height=\"%d\" >\n",sprite_name, sprite_width, sprite_height));
         buffer.append("  <action name=\"none\" mode=\"1\" >\n");
         //过滤png图片
@@ -190,7 +190,7 @@ public class SpriteFileBuilder {
 
         JSONObject json_sprite = new JSONObject();
         JSONArray array_action = new JSONArray();
-        json_sprite.put("actions",array_action);
+        json_sprite.put("action",array_action);
         for(File file:list_action){
             ArrayList<File> list_file = FileListUtil.listFile(file);
             JSONArray array_picture = new JSONArray();
