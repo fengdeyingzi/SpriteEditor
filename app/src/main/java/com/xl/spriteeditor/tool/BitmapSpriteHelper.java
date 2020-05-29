@@ -78,7 +78,7 @@ public class BitmapSpriteHelper {
     //旋转图片，获得旋转后的bitmap阵列
     ArrayList<Bitmap> bitmapSpin(int size){
         ArrayList<Bitmap> list_bitmap = new ArrayList();
-
+return list_bitmap;
     }
 
     //透明度特效，获得处理后的bitmap阵列
