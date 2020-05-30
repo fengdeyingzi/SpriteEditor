@@ -37,6 +37,7 @@ public class DebugXmlActivity extends AppCompatActivity {
         LinearLayout linearlayout_0 = new LinearLayout(context);
         LinearLayout.LayoutParams layoutParams_0 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT);
         linearlayout_0.setOrientation(LinearLayout.VERTICAL);
+        layoutParams_0.weight
         com.google.android.material.appbar.AppBarLayout layout_appbar = new com.google.android.material.appbar.AppBarLayout(context);
         LinearLayout.LayoutParams layoutParams_1 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
         layout_appbar.setId(R.id.layout_appbar);
